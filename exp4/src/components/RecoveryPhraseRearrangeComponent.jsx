@@ -1,45 +1,46 @@
 import React, { useState } from 'react';
 
-const RecoveryPhraseOrderComponent = ({ recoveryPhrase, handleConfirm }) => {
-  const words = recoveryPhrase.split(' ');
-  const [selectedWords, setSelectedWords] = useState(Array(words.length).fill(''));
-  const [isCorrect, setIsCorrect] = useState(false);
+const RecoveryPhraseRearrangeComponent = ({ recoveryPhrase, missingIndices }) => {
+  const originalWords = recoveryPhrase.split(' ');
+  const [userWords, setUserWords] = useState(Array(originalWords.length).fill(''));
+  const [isSuccess, setIsSuccess] = useState(false);
 
-  // Function to handle word selection
-  const handleWordClick = (word, index) => {
-    const updatedSelectedWords = [...selectedWords];
-    updatedSelectedWords[index] = word;
-    setSelectedWords(updatedSelectedWords);
+  const handleInputChange = (index, e) => {
+    if (missingIndices.includes(index)) {
+      const newValue = e.target.value;
+      const newUserWords = [...userWords];
+      newUserWords[index] = newValue;
+      setUserWords(newUserWords);
+    }
   };
 
-  // Function to check if the words are arranged correctly
-  const checkIsCorrect = () => {
-    setIsCorrect(words.join(' ') === selectedWords.join(' '));
+  const handleConfirm = () => {
+    const isOrderCorrect = userWords.join(' ') === recoveryPhrase;
+    setIsSuccess(isOrderCorrect);
   };
 
   return (
     <div className="card">
       <div className="card-body">
-        <h5 className="card-title">Rearrange Recovery Phrase</h5>
-        <div className="rearrange-phrase">
-          {words.map((word, index) => (
-            <button
-              key={index}
-              className={`btn btn-secondary ${selectedWords[index] === word ? 'active' : ''}`}
-              onClick={() => handleWordClick(word, index)}
-            >
-              {word}
-            </button>
-          ))}
-        </div>
+        <h5 className="card-title">Reorder Recovery Phrase</h5>
+        {originalWords.map((word, index) => (
+          <input
+            key={index}
+            type="text"
+            value={missingIndices.includes(index) ? userWords[index] : word}
+            onChange={(e) => handleInputChange(index, e)}
+            readOnly={!missingIndices.includes(index)}
+          />
+        ))}
       </div>
       <div className="card-body">
-        <button className="btn btn-primary" onClick={checkIsCorrect}>Confirm</button>
-        {isCorrect && <p className="text-success">Recovery phrase is correct!</p>}
-        {isCorrect === false && <p className="text-danger">Recovery phrase is not correct. Please try again.</p>}
+        <button className="btn btn-primary" onClick={handleConfirm}>
+          Confirm
+        </button>
       </div>
+      {isSuccess && <p>Success! You have arranged the recovery phrase correctly.</p>}
     </div>
   );
 };
 
-export default RecoveryPhraseOrderComponent;
+export default RecoveryPhraseRearrangeComponent;

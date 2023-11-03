@@ -3,13 +3,14 @@ import QuestionAnswerCard from './Cards';
 import MetaMaskIntroComponent from './MetaMaskIntro';
 import PasswordComponent from './PasswordComponent';
 import RecoveryPhraseComponent from './RecoveryPhraseComponent';
+import RecoveryPhraseRearrangeComponent from './RecoveryPhraseRearrangeComponent';
 
 const MainContainer = () => {
   const [showQuestionAnswerCard, setShowQuestionAnswerCard] = useState(true);
   const [showMetaMaskIntro, setShowMetaMaskIntro] = useState(false);
   const [showPasswordComponent, setShowPasswordComponent] = useState(false);
   const [showRecoveryPhraseComponent, setShowRecoveryPhraseComponent] = useState(false);
-
+  const [showRecoveryPhraseRearrange, setShowRecoveryPhraseRearrange] = useState(false);
 
 
   const handleShowQuestionAnswerCard = () => {
@@ -30,6 +31,12 @@ const MainContainer = () => {
     setShowPasswordComponent(false);
     setShowRecoveryPhraseComponent(true);
   };
+  const handleShowRecoveryPhraseRearrange = () => {
+    setShowRecoveryPhraseComponent(false);
+    setShowRecoveryPhraseRearrange(true);
+  };
+
+
 
   return (
     <div className="container">
@@ -48,8 +55,9 @@ const MainContainer = () => {
             <PasswordComponent showLogin={handleShowRecoveryPhraseComponent} />
           )}
           {showRecoveryPhraseComponent && (
-            <RecoveryPhraseComponent />
+            <RecoveryPhraseComponent showRecoveryPharse={handleShowRecoveryPhraseRearrange} />
           )}
+          {showRecoveryPhraseRearrange && <RecoveryPhraseRearrangeComponent />} 
         </div>
       </div>
     </div>

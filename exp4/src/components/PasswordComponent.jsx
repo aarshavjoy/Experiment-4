@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import RecoveryPhraseComponent from './RecoveryPhraseComponent';
 
-const PasswordComponent = ({ showLogin, hideMetaMaskIntro }) => {
+const PasswordComponent = ({ showLogin }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showRecoveryPhrase, setShowRecoveryPhrase] = useState(false);
 
 
   const handleLogin = () => {
-    // Add your login logic here
+   
     setShowRecoveryPhrase(true);
     showLogin();
   };

@@ -4,7 +4,7 @@ function Accordion({ publicKey, privateKey, onClose }) {
   return (
     <div className="container mt-5">
       <div id="accordion">
-        {/* Public Key Panel */}
+       
         <div className="card">
           <div className="card-header" id="publicKeyHeading">
             <h2 className="mb-0">
@@ -32,7 +32,7 @@ function Accordion({ publicKey, privateKey, onClose }) {
           </div>
         </div>
 
-        {/* Private Key Panel */}
+   
         <div className="card">
           <div className="card-header" id="privateKeyHeading">
             <h2 className="mb-0">

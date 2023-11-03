@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from 'react';
 
 import Accordion from './AccountDetailsComponent';
+import SendCard from './Sendquestion';
 
 
-const DashboardComponent = ({ account }) => {
+const DashboardComponent = ({ account}) => {
   const [selectedNetwork, setSelectedNetwork] = useState('Mainnet');
   const [etherAmount, setEtherAmount] = useState(10); // Initial ether amount
   const [publicKey, setPublicKey] = useState(generateRandomKey(40));
   const [privateKey, setPrivateKey] = useState(generateRandomKey(64));
   const [isAccordionCardVisible, setIsAccordionCardVisible] = useState(false);
+  const[showsend,setShowSend]=useState(false);
+
 
   const networks = ['Mainnet', 'Ropsten', 'Kovan', 'Rinkeby'];
 
   useEffect(() => {
     // Simulate a dynamic ether amount update every 10 seconds
     const updateEtherAmount = setInterval(() => {
-      const newEtherAmount = Math.floor(Math.random() * 100) / 100; // Generate a random ether amount
+      const newEtherAmount = Math.floor(Math.random() * 100) / 100; 
       setEtherAmount(newEtherAmount);
-    }, 10000); // Update every 10 seconds
+    }, 10000); 
 
     return () => {
       clearInterval(updateEtherAmount);
@@ -43,13 +46,18 @@ const DashboardComponent = ({ account }) => {
   const closeAccordionCard = () => {
     setIsAccordionCardVisible(false);
   };
+  const openSendCard = () => {
+    
+    setShowSend(true);
+  };
 
 
   return (<>
-  <button className="btn btn-primary" >
+  <button className="btn resumebtn btn-primary" onClick={openSendCard} >
           Resume Learning
         </button>
-  <div className="card"> 
+       {showsend && <SendCard/>}
+  <div className="card dashcard"> 
       <div className="network-dropdown">
       
         <label htmlFor="networkSelect"></label>
@@ -65,32 +73,34 @@ const DashboardComponent = ({ account }) => {
             </option>
           ))}
         </select>
-      </div>
-      <div className="card-body bodys">
-        <h5 className="card-title">Account-1 {account}</h5>
         <div className="account-details">
-          <button className="btn btn-light" onClick={toggleAccordionCard}>
-            {/* Three dots icon */}
+          <button className="btn btndetail btn-light" onClick={toggleAccordionCard}>
+           
             <i className="fas fa-ellipsis-h"></i>
           </button>
         </div>
-      </div>
-      {isAccordionCardVisible && (
+        {isAccordionCardVisible && (
         <Accordion publicKey={publicKey} privateKey={privateKey} onClose={closeAccordionCard}/>
       )}
-      <div className="card-body publicbody">
-        <p>Public Key: {publicKey}</p>
-        <p>Ether Amount: {etherAmount} ETH</p>
+        
+      </div>
+      <div className="card-body bodys">
+        <h5 className="card-title accountcard">Account-1 {account}</h5>
+      </div>
+      <div className="card-body ">
+        <p className='key'> {publicKey}</p>
+        <p className='coin'><b>{etherAmount}ETH</b></p>
       </div>
       <div className="card-body">
-        <button className="btn btn-primary">Buy</button>
-        <button className="btn btn-primary">Sell</button>
-        <button className="btn btn-primary">Send</button>
-        <button className="btn btn-primary">Receive</button>
+        <button className="btn btns btn-primary">Buy</button>
+        <button className="btn btns btn-primary">Sell</button>
+        <button className="btn btns btn-primary">Send</button>
+        <button className="btn btns btn-primary">Receive</button>
       </div>
+      <hr />
       <div className="card-body">
-        <button className="btn btn-primary">Assets</button>
-        <button className="btn btn-primary">Activity</button>
+        <button className="btn  assetbtn ">Assets</button>
+        <button className="btn activitybtn ">Activity</button>
       </div>
     </div>
     </>

@@ -4,6 +4,8 @@ import MetaMaskIntroComponent from './MetaMaskIntro';
 import PasswordComponent from './PasswordComponent';
 import RecoveryPhraseComponent from './RecoveryPhraseComponent';
 import RecoveryPhraseRearrangeComponent from './RecoveryPhraseRearrangeComponent';
+import SendCard from './Sendquestion'
+import DashboardTwo from './DashboardTwo'
 
 const MainContainer = () => {
   const [showQuestionAnswerCard, setShowQuestionAnswerCard] = useState(true);
@@ -11,7 +13,8 @@ const MainContainer = () => {
   const [showPasswordComponent, setShowPasswordComponent] = useState(false);
   const [showRecoveryPhraseComponent, setShowRecoveryPhraseComponent] = useState(false);
   const [showRecoveryPhraseRearrange, setShowRecoveryPhraseRearrange] = useState(false);
-
+  const [showSendCard, setShowSendCard] = useState(false);
+  const [showDashboardTwo, setShowDashboardTwo] = useState(false);
 
   const handleShowQuestionAnswerCard = () => {
     setShowQuestionAnswerCard(true);
@@ -35,8 +38,11 @@ const MainContainer = () => {
     setShowRecoveryPhraseComponent(false);
     setShowRecoveryPhraseRearrange(true);
   };
-
-
+  
+  const handleStartButton = () => {
+    setShowSendCard(false);
+    setShowDashboardTwo(true);
+  };
 
   return (
     <div className="container">
@@ -57,7 +63,9 @@ const MainContainer = () => {
           {showRecoveryPhraseComponent && (
             <RecoveryPhraseComponent showRecoveryPharse={handleShowRecoveryPhraseRearrange} />
           )}
-          {showRecoveryPhraseRearrange && <RecoveryPhraseRearrangeComponent />} 
+        {showSendCard && (<SendCard onClick={handleStartButton} />)}
+          {showDashboardTwo && <DashboardTwo />}
+        
         </div>
       </div>
     </div>

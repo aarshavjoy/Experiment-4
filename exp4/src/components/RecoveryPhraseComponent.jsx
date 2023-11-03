@@ -4,14 +4,14 @@ import RecoveryPhraseRearrangeComponent from './RecoveryPhraseRearrangeComponent
 
 
 const RecoveryPhraseComponent = ({ showRecoveryPharse }) => {
-  // Function to generate a random 12-word phrase (for demonstration purposes)
+  
   const generateRandomPhrase = () => {
     const words = [
       'blockchain', 'crypto', 'learning', 'wallet', 'digital', 'pow',
       'halla', 'block', 'miners', 'password', 'bitcoin', 'pos'
     ];
 
-    // Shuffle the words to create a random phrase
+    
     for (let i = words.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [words[i], words[j]] = [words[j], words[i]];
@@ -27,7 +27,7 @@ const RecoveryPhraseComponent = ({ showRecoveryPharse }) => {
   const handleNext = () => {
     setRecoveryPhrase(generateRandomPhrase());
     setShowRecoveryPhraseOrder(true);
-    showRecoveryPharse();
+    // showRecoveryPharse();
   };
 
   return (

@@ -18,21 +18,97 @@ html, body {
   width:40%;
   margin-left: 30%;
 }
-.card{
-  margin-left:25%;
-  width: 50%;
-}
+
 .bodys{
   margin-left: 40%;
+  margin-top:1%;
 }
-.account-details-popup{
-  background-color: #022027;
+.account-details{
+  margin-top:-5%;
   color:aliceblue;
-  width: 60%;
-  margin-left: 25%;
+  width: 5%;
+  margin-left: 80%;
   border-radius: 10;
+}
+.btndetail{
+  background-color:antiquewhite;
 }
 .recovery{
   width: 100%;
   height: 80%;
+}
+.qcards{
+  margin-left:55%;
+  margin-top: 25%;
+  width: 90%;
+}
+.introcard{
+  width:70%;
+  height: 70%;
+  margin-left:70%;
+  margin-top:35%;
+}
+.plus{
+  width:40%;
+  margin-left:40%;
+  margin-top: 20%;
+}
+.setup{
+  font-size: larger;
+margin-top: 20%;
+  margin-left: 15%;
+}
+.btnintro{
+  margin-left:35%;
+  margin-top: 6%;
+}
+.dashcard{
+  width:30%;
+  margin-left:40%;
+  border-radius: 10px;
+}
+.btnresume{
+margin-left: 35%;
+}
+
+.key{
+  margin-left:15%;
+  margin-top:-10%;
+}
+.coin{
+  margin-left:38%;
+  font-size: xx-large;
+  margin-top:-3%;
+}
+.btns{
+  margin-left:5%;
+}
+.assetbtn{
+  margin-right: 60%;
+  margin-bottom: 50%;
+  border-color: #022027;
+  
+}
+.activitybtn{
+  margin-bottom: 50%;
+  border-color: #022027;
+}
+.form-select{
+  background-color:antiquewhite;
+  border-radius: 5px;
+  width:25%;
+  margin-top:5%;
+}
+.resumebtn{
+  margin-left:30%;
+  
+}
+.sendcard{
+  width:25%;
+  height:60%;
+  margin-left:35%;
+  margin-top:15%;
+}
+.btntrans{
+  margin-left:35%;
 }

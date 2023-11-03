@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import DashboardComponent from './DashboardComponent'
 
-const RecoveryPhraseRearrangeComponent = ({ recoveryPhrase, missingIndices }) => {
+const RecoveryPhraseRearrangeComponent = ({recoveryPhrase, missingIndices}) => {
   const originalWords = recoveryPhrase.split(' ');
   const [userWords, setUserWords] = useState(Array(originalWords.length).fill(''));
   const [isSuccess, setIsSuccess] = useState(false);
+  const [showDashboards,setShowDashboards] =useState(false);
 
   const handleInputChange = (index, e) => {
     if (missingIndices.includes(index)) {
@@ -17,6 +19,8 @@ const RecoveryPhraseRearrangeComponent = ({ recoveryPhrase, missingIndices }) =>
   const handleConfirm = () => {
     const isOrderCorrect = userWords.join(' ') === recoveryPhrase;
     setIsSuccess(isOrderCorrect);
+   
+    
   };
 
   return (
@@ -39,6 +43,7 @@ const RecoveryPhraseRearrangeComponent = ({ recoveryPhrase, missingIndices }) =>
         </button>
       </div>
       {isSuccess && <p>Success! You have arranged the recovery phrase correctly.</p>}
+     
     </div>
   );
 };

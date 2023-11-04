@@ -21,7 +21,7 @@ html, body {
 
 .bodys{
   margin-left: 40%;
-  margin-top:1%;
+  margin-top:3%;
 }
 .account-details{
   margin-top:-5%;
@@ -34,8 +34,30 @@ html, body {
   background-color:antiquewhite;
 }
 .recovery{
-  width: 100%;
+  width: 80%;
+  height: 50%;
+  margin-top:45%;
+  margin-left:45%;
+}
+.btnrecovery{
+  margin-left:40%;
+}
+.pharse{
+  margin-top:10%;
+}
+.reorder{
+  margin-top:30%;
+  margin-left:40%;
+  width:95%;
   height: 80%;
+}
+.btnreorder{
+  margin-left:40%;
+}
+.reorders{
+  margin-left:5%;
+  margin-bottom:3%;
+  
 }
 .qcards{
   margin-left:55%;
@@ -63,17 +85,20 @@ margin-top: 20%;
   margin-top: 6%;
 }
 .dashcard{
-  width:30%;
-  margin-left:40%;
+  width:90%;
+  height:60%;
+  margin-left:55%;
   border-radius: 10px;
+  margin-top:20%;
 }
 .btnresume{
 margin-left: 35%;
+
 }
 
 .key{
   margin-left:15%;
-  margin-top:-10%;
+  margin-top:-5%;
 }
 .coin{
   margin-left:38%;
@@ -81,7 +106,7 @@ margin-left: 35%;
   margin-top:-3%;
 }
 .btns{
-  margin-left:5%;
+  margin-left:7%;
 }
 .assetbtn{
   margin-right: 60%;
@@ -101,14 +126,21 @@ margin-left: 35%;
 }
 .resumebtn{
   margin-left:30%;
+  margin-top:20%;
   
 }
 .sendcard{
-  width:25%;
-  height:60%;
-  margin-left:35%;
-  margin-top:15%;
+  width:80%;
+  height:70%;
+  margin-left:60%;
+  margin-top:30%;
 }
-.btntrans{
-  margin-left:35%;
+.btnsend{
+  margin-left:40%;
+  margin-top:5%;
+}
+.login{
+  margin-top:40%;
+  margin-left:65%;
+  width:80%;
 }

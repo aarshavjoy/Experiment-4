@@ -14,7 +14,7 @@ const PasswordComponent = ({ showLogin }) => {
   };
 
   return (
-    <div className="card">
+    <div className="card login">
       <div className="card-body">
         <h5 className="card-title">Enter Password</h5>
         <div className="form-group">

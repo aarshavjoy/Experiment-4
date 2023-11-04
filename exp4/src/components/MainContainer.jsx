@@ -2,46 +2,55 @@ import React, { useState } from 'react';
 import QuestionAnswerCard from './Cards';
 import MetaMaskIntroComponent from './MetaMaskIntro';
 import PasswordComponent from './PasswordComponent';
+import SendCard from './Sendquestion';
+import DashboardTwo from './DashboardTwo';
 import RecoveryPhraseComponent from './RecoveryPhraseComponent';
 import RecoveryPhraseRearrangeComponent from './RecoveryPhraseRearrangeComponent';
-import SendCard from './Sendquestion'
-import DashboardTwo from './DashboardTwo'
+import DashboardComponent from './DashboardComponent';
 
 const MainContainer = () => {
   const [showQuestionAnswerCard, setShowQuestionAnswerCard] = useState(true);
   const [showMetaMaskIntro, setShowMetaMaskIntro] = useState(false);
   const [showPasswordComponent, setShowPasswordComponent] = useState(false);
   const [showRecoveryPhraseComponent, setShowRecoveryPhraseComponent] = useState(false);
-  const [showRecoveryPhraseRearrange, setShowRecoveryPhraseRearrange] = useState(false);
-  const [showSendCard, setShowSendCard] = useState(false);
-  const [showDashboardTwo, setShowDashboardTwo] = useState(false);
+  const [showRecoveryPhraseRearrangeComponent, setShowRecoveryPhraseRearrangeComponent] = useState(false);
+  const [showDashboard, setShowDashboard] = useState(false);
+  const [generatedRecoveryPhrase, setGeneratedRecoveryPhrase] = useState('');
+ 
 
   const handleShowQuestionAnswerCard = () => {
     setShowQuestionAnswerCard(true);
     setShowMetaMaskIntro(false);
-    setShowPasswordComponent(true);
   };
 
   const handleShowMetaMaskIntro = () => {
     setShowQuestionAnswerCard(false);
     setShowMetaMaskIntro(true);
+    setShowPasswordComponent(false);
   };
+
   const handleShowPasswordComponent = () => {
     setShowMetaMaskIntro(false);
     setShowPasswordComponent(true);
+    setShowRecoveryPhraseComponent(false);
   };
+
   const handleShowRecoveryPhraseComponent = () => {
     setShowPasswordComponent(false);
     setShowRecoveryPhraseComponent(true);
   };
-  const handleShowRecoveryPhraseRearrange = () => {
+
+  const handleShowRecoveryPhraseRearrangeComponent = (recoveryPhrase) => {
+    if (recoveryPhrase) {
+      setGeneratedRecoveryPhrase(recoveryPhrase);
+    }
     setShowRecoveryPhraseComponent(false);
-    setShowRecoveryPhraseRearrange(true);
+    setShowRecoveryPhraseRearrangeComponent(true);
   };
-  
-  const handleStartButton = () => {
-    setShowSendCard(false);
-    setShowDashboardTwo(true);
+
+  const handleShowDashboard = () => {
+    setShowRecoveryPhraseRearrangeComponent(false);
+    setShowDashboard(true);
   };
 
   return (
@@ -54,18 +63,23 @@ const MainContainer = () => {
               hideQuestionAnswerCard={handleShowMetaMaskIntro}
             />
           ) : null}
-           {showMetaMaskIntro && (
+          {showMetaMaskIntro && (
             <MetaMaskIntroComponent showPasswordComponent={handleShowPasswordComponent} />
           )}
-         {showPasswordComponent && (
+          {showPasswordComponent && (
             <PasswordComponent showLogin={handleShowRecoveryPhraseComponent} />
           )}
           {showRecoveryPhraseComponent && (
-            <RecoveryPhraseComponent showRecoveryPharse={handleShowRecoveryPhraseRearrange} />
+            <RecoveryPhraseComponent onNext={handleShowRecoveryPhraseRearrangeComponent} />
           )}
-        {showSendCard && (<SendCard onClick={handleStartButton} />)}
-          {showDashboardTwo && <DashboardTwo />}
-        
+          {showRecoveryPhraseRearrangeComponent && (
+            <RecoveryPhraseRearrangeComponent
+              recoveryPhrase={generatedRecoveryPhrase}
+              missingIndices={[2, 5, 9]}
+              onDashboard={handleShowDashboard}
+            />
+          )}
+          {showDashboard && <DashboardComponent />}
         </div>
       </div>
     </div>

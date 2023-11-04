@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-
 import Accordion from './AccountDetailsComponent';
 import SendCard from './Sendquestion';
 
 
 const DashboardComponent = ({ account}) => {
   const [selectedNetwork, setSelectedNetwork] = useState('Mainnet');
-  const [etherAmount, setEtherAmount] = useState(10); // Initial ether amount
+  const [etherAmount, setEtherAmount] = useState(10); 
   const [publicKey, setPublicKey] = useState(generateRandomKey(40));
   const [privateKey, setPrivateKey] = useState(generateRandomKey(64));
   const [isAccordionCardVisible, setIsAccordionCardVisible] = useState(false);
@@ -16,7 +15,7 @@ const DashboardComponent = ({ account}) => {
   const networks = ['Mainnet', 'Ropsten', 'Kovan', 'Rinkeby'];
 
   useEffect(() => {
-    // Simulate a dynamic ether amount update every 10 seconds
+    
     const updateEtherAmount = setInterval(() => {
       const newEtherAmount = Math.floor(Math.random() * 100) / 100; 
       setEtherAmount(newEtherAmount);
@@ -53,10 +52,12 @@ const DashboardComponent = ({ account}) => {
 
 
   return (<>
-  <button className="btn resumebtn btn-primary" onClick={openSendCard} >
-          Resume Learning
-        </button>
-       {showsend && <SendCard/>}
+
+
+  
+        {showsend ? (
+          <SendCard />
+        ) : (
   <div className="card dashcard"> 
       <div className="network-dropdown">
       
@@ -102,7 +103,11 @@ const DashboardComponent = ({ account}) => {
         <button className="btn  assetbtn ">Assets</button>
         <button className="btn activitybtn ">Activity</button>
       </div>
+      <button className="btn resumebtn btn-primary" onClick={openSendCard} >
+          Resume Learning
+        </button>
     </div>
+       )}
     </>
   );
 };

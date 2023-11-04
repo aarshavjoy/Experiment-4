@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Accordion from './AccountDetailsComponent';
-import BuyETH from './Buy'; // Import the BuyETH component
+import BuyETH from './Buy';
+import SendTransaction from './Send';
+
 
 const DashboardTwo = () => {
   const [selectedNetwork, setSelectedNetwork] = useState('Mainnet');
-  const [etherAmount, setEtherAmount] = useState(10); // Initial ether amount
+  const [etherAmount, setEtherAmount] = useState(10);
   const [publicKey, setPublicKey] = useState(generateRandomKey(40));
   const [privateKey, setPrivateKey] = useState(generateRandomKey(64));
   const [isAccordionCardVisible, setIsAccordionCardVisible] = useState(false);
   const [isBuyingETH, setIsBuyingETH] = useState(false);
-  const [showKYCVerification, setShowKYCVerification] = useState(false);
-
-
-  
+  const [isSendingETH, setIsSendingETH] = useState(false);
 
   const networks = ['Mainnet', 'Ropsten', 'Kovan', 'Rinkeby'];
 
@@ -48,12 +47,23 @@ const DashboardTwo = () => {
     setIsBuyingETH(true);
   };
 
+  const handleSendETHClick = () => {
+    setIsSendingETH(true);
+  };
+
   return (
     <div>
       {isBuyingETH ? (
         <BuyETH onBuy={() => setIsBuyingETH(false)} />
+      ) : isSendingETH ? ( 
+        <SendTransaction
+          onClose={() => setIsSendingETH(false)}
+          onSend={(transactionDetails) => {
+            console.log('Sending ETH with details:', transactionDetails);
+          }}
+        />
       ) : (
-        <div className="card dashcard">
+        <div className="card">
           <div className="network-dropdown">
             <label htmlFor="networkSelect"></label>
             <select
@@ -74,7 +84,7 @@ const DashboardTwo = () => {
               </button>
             </div>
             {isAccordionCardVisible && (
-              <Accordion publicKey={publicKey} privateKey={privateKey} onClose={closeAccordionCard} />
+              <Accordion publicKey={publicKey} privateKey={privateKey} onClose={toggleAccordionCard} />
             )}
           </div>
           <div className="card-body bodys">
@@ -88,14 +98,16 @@ const DashboardTwo = () => {
             <button className="btn btns btn-primary" onClick={handleBuyETHClick}>
               Buy ETH
             </button>
+            <button className="btn btns btn-primary" onClick={handleSendETHClick}>
+              Send ETH
+            </button>
             <button className="btn btns btn-primary">Sell</button>
-            <button className="btn btns btn-primary">Send</button>
             <button className="btn btns btn-primary">Receive</button>
           </div>
           <hr />
           <div className="card-body">
-            <button className="btn  assetbtn ">Assets</button>
-            <button className="btn activitybtn ">Activity</button>
+            <button className="btn assetbtn">Assets</button>
+            <button className="btn activitybtn">Activity</button>
           </div>
         </div>
       )}

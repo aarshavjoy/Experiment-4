@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TransactionConfirmation = ({ transactionDetails, onConfirm, onCancel }) => {
+const TransactionConfirmation = ({ transactionDetails, onConfirm, onClose }) => {
   const { recipient, amount, gasFee, totalCost } = transactionDetails;
 
   return (
@@ -9,7 +9,7 @@ const TransactionConfirmation = ({ transactionDetails, onConfirm, onCancel }) =>
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">Transaction Confirmation</h5>
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={onCancel}>
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={onClose}>
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -25,7 +25,7 @@ const TransactionConfirmation = ({ transactionDetails, onConfirm, onCancel }) =>
             <button className="btn btn-primary" onClick={onConfirm}>
               Confirm
             </button>
-            <button className="btn btn-secondary" data-dismiss="modal" onClick={onCancel}>
+            <button className="btn btn-secondary" data-dismiss="modal" onClick={onClose}>
               Cancel
             </button>
           </div>

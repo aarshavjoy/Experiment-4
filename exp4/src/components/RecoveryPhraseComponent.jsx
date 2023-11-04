@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
-import RecoveryPhraseRearrangeComponent from './RecoveryPhraseRearrangeComponent';
 
 
-
-const RecoveryPhraseComponent = ({ showRecoveryPharse }) => {
-  
+const RecoveryPhraseComponent = ({ onNext }) => {
   const generateRandomPhrase = () => {
     const words = [
       'blockchain', 'crypto', 'learning', 'wallet', 'digital', 'pow',
       'halla', 'block', 'miners', 'password', 'bitcoin', 'pos'
     ];
 
-    
     for (let i = words.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [words[i], words[j]] = [words[j], words[i]];
@@ -25,23 +21,24 @@ const RecoveryPhraseComponent = ({ showRecoveryPharse }) => {
   const missingIndices = [2, 5, 9];
 
   const handleNext = () => {
-    setRecoveryPhrase(generateRandomPhrase());
     setShowRecoveryPhraseOrder(true);
-    // showRecoveryPharse();
+    onNext(recoveryPhrase); 
   };
 
   return (
     <div className="card recovery">
       <div className="card-body">
-        <h5 className="card-title">Secret Recovery Phrase</h5>
-        <p>{recoveryPhrase}</p>
+        
+          <>
+            <h5 className="card-title">Secret Recovery Phrase</h5>
+            <b><p className='pharse'>{recoveryPhrase}</p></b>
+          </>
+       
       </div>
       <div className="card-body">
-        <button className="btn btn-primary" onClick={handleNext}>Next</button>
+        <button className="btn btnrecovery btn-primary" onClick={handleNext}>Next</button>
       </div>
-      {showRecoveryPhraseOrder && (
-        <RecoveryPhraseRearrangeComponent recoveryPhrase={recoveryPhrase} missingIndices={missingIndices}  />
-      )}
+      
     </div>
   );
 };

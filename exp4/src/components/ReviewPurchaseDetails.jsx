@@ -1,26 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import DashboardTwo from './DashboardTwo';
 
 function ReviewPurchaseDetails({ ethAmount, selectedCurrency }) {
- 
-  const gasFee = 0.01; 
-  const price = 2000; 
+  const [showBalance, setShowBalance] = useState(false);
+  const gasFee = 0.01;
+  const price = 2000;
 
   // Calculate the total amount needed
   const totalAmountNeeded = ethAmount * price + gasFee;
 
+  const handleShowBalance = () => {
+    setShowBalance(true);
+  }
+
   return (
     <div className="review-purchase-details">
-      <h3>Review Purchase Details</h3>
-      <div>
-        <p>Amount: {ethAmount} ETH</p>
-        <p>Gas Fee: {gasFee} ETH</p>
-        <p>Price per ETH: {price} {selectedCurrency} per ETH</p>
-        <p>Total Amount Needed: {totalAmountNeeded} {selectedCurrency}</p>
-        {/* Add more details like terms and conditions here */}
-      </div>
-      <button className="btn btn-primary">Confirm Purchase</button>
+      {showBalance ? (
+        <DashboardTwo ethAmount={ethAmount} />
+      ) : (
+        <div>
+          <h3>Review Purchase Details</h3>
+          <div>
+            <p>Amount: {ethAmount} ETH</p>
+            <p>Gas Fee: {gasFee} ETH</p>
+            <p>Price per ETH: {price} {selectedCurrency} per ETH</p>
+            <p>Total Amount Needed: {totalAmountNeeded} {selectedCurrency}</p>
+            
+          </div>
+          <button className="btn btn-primary" onClick={handleShowBalance}>Confirm Purchase</button>
+        </div>
+      )}
     </div>
   );
 }
 
-export default ReviewPurchaseDetails;
+export default ReviewPurchaseDetails

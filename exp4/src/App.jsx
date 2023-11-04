@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-
+import MainContainer from './components/MainContainer';
 import TransactionReceipt from './components/TransactionReceipt'
 import SendTransaction from './components/Send';
 import TransactionConfirmation from './components/SendReview';
 import ReceiveEtherComponent from './components/Recieve';
 import DashboardTwo from './components/DashboardTwo';
+import  "./App.css"
 
 function App() {
   // const [showSendTransaction, setShowSendTransaction] = useState(false);
@@ -39,35 +40,35 @@ function App() {
   //   setShowTransactionReceipt(false);
   // };
 
-  // return (
-  //   <div>
-  //     <h1>Ethereum Wallet</h1>
+  return (
+//     <div>
+//       <h1>Ethereum Wallet</h1>
 
-  //     <button onClick={openSendTransaction}>Send Ethereum</button>
+//       <button onClick={openSendTransaction}>Send Ethereum</button>
 
-  //     {showSendTransaction && (
-  //       <SendTransaction onClose={closeSendTransaction} onSend={openTransactionConfirmation} />
-  //     )}
+//       {showSendTransaction && (
+//         <SendTransaction onClose={closeSendTransaction} onSend={openTransactionConfirmation} />
+//       )}
 
-  //     {showTransactionConfirmation && (
-  //       <TransactionConfirmation
-  //         transactionDetails={transactionDetails}
-  //         onConfirm={() => {
-  //           // Simulate transaction success and get the transaction hash
-  //           const transactionHash = '0x12345...';
-  //           openTransactionReceipt(transactionHash);
-  //         }}
-  //         onCancel={closeTransactionConfirmation}
-  //       />
-  //     )}
+//       {showTransactionConfirmation && (
+//         <TransactionConfirmation
+//           transactionDetails={transactionDetails}
+//           onConfirm={() => {
+            
+//             const transactionHash = '0x12345...';
+//             openTransactionReceipt(transactionHash);
+//           }}
+//           onCancel={closeTransactionConfirmation}
+//         />
+//       )}
 
-  //     {showTransactionReceipt && (
-  //       <TransactionReceipt transactionHash={transactionHash} onClose={closeTransactionReceipt} />
-  //     )}
-  return(
-  <div>
- <DashboardTwo/>
-    </div>
+//       {showTransactionReceipt && (
+//         <TransactionReceipt transactionHash={transactionHash} onClose={closeTransactionReceipt} />
+//       )}
+//  </div>
+<div>
+  <MainContainer/>
+</div>
   );
 }
 

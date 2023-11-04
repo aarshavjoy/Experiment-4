@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import DashboardComponent from './DashboardComponent'
 
-const RecoveryPhraseRearrangeComponent = ({recoveryPhrase, missingIndices}) => {
+const RecoveryPhraseRearrangeComponent = ({ recoveryPhrase, missingIndices, onDashboard }) => {
   const originalWords = recoveryPhrase.split(' ');
   const [userWords, setUserWords] = useState(Array(originalWords.length).fill(''));
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [showDashboards,setShowDashboards] =useState(false);
 
   const handleInputChange = (index, e) => {
     if (missingIndices.includes(index)) {
@@ -16,19 +13,13 @@ const RecoveryPhraseRearrangeComponent = ({recoveryPhrase, missingIndices}) => {
     }
   };
 
-  const handleConfirm = () => {
-    const isOrderCorrect = userWords.join(' ') === recoveryPhrase;
-    setIsSuccess(isOrderCorrect);
-   
-    
-  };
-
   return (
-    <div className="card">
+    <div className="card reorder">
       <div className="card-body">
         <h5 className="card-title">Reorder Recovery Phrase</h5>
         {originalWords.map((word, index) => (
           <input
+            className='reorders'
             key={index}
             type="text"
             value={missingIndices.includes(index) ? userWords[index] : word}
@@ -38,12 +29,10 @@ const RecoveryPhraseRearrangeComponent = ({recoveryPhrase, missingIndices}) => {
         ))}
       </div>
       <div className="card-body">
-        <button className="btn btn-primary" onClick={handleConfirm}>
+        <button className="btn btnreorder btn-primary" onClick={() => onDashboard(userWords.join(' '))}>
           Confirm
         </button>
       </div>
-      {isSuccess && <p>Success! You have arranged the recovery phrase correctly.</p>}
-     
     </div>
   );
 };

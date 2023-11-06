@@ -41,7 +41,7 @@ function ETHAmountSelection({ onAmountSelection }) {
         <ReviewPurchaseDetails ethAmount={ethAmount} />
       ) : (
         <>
-          <h3>ETH Amount Selection</h3>
+          <p>Step:3 : select eth ammount </p>
           <div className="form-group">
             <label>Enter ETH Amount:</label>
             <input

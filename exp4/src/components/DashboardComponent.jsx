@@ -57,7 +57,11 @@ const DashboardComponent = ({ account}) => {
   
         {showsend ? (
           <SendCard />
-        ) : (
+        ) : ( 
+          <div>
+        <button className="btn resumebtn btn-primary" onClick={openSendCard} >
+        Resume Learning
+      </button>
   <div className="card dashcard"> 
       <div className="network-dropdown">
       
@@ -100,12 +104,12 @@ const DashboardComponent = ({ account}) => {
       </div>
       <hr />
       <div className="card-body">
-        <button className="btn  assetbtn ">Assets</button>
+        {/* <button className="btn  assetbtn ">Assets</button> */}
         <button className="btn activitybtn ">Activity</button>
-      </div>
-      <button className="btn resumebtn btn-primary" onClick={openSendCard} >
-          Resume Learning
-        </button>
+      
+        </div>
+     
+        </div>
     </div>
        )}
     </>

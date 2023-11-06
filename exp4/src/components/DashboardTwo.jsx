@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Accordion from './AccountDetailsComponent';
 import BuyETH from './Buy';
-import SendTransaction from './Send';
+import TransactionProcess from './SendTransaction';
+import SellProcess from './Sell';
+import ReceiveEther from './Recieve';
 
 
 const DashboardTwo = () => {
@@ -11,7 +13,9 @@ const DashboardTwo = () => {
   const [privateKey, setPrivateKey] = useState(generateRandomKey(64));
   const [isAccordionCardVisible, setIsAccordionCardVisible] = useState(false);
   const [isBuyingETH, setIsBuyingETH] = useState(false);
-  const [isSendingETH, setIsSendingETH] = useState(false);
+  const [isTransactionProcessVisible, setIsTransactionProcessVisible] = useState(false);
+  const [isSellProcessVisible, setIsSellProcessVisible] = useState(false);
+  const [isReceiveEtherVisible, setIsReceiveEtherVisible] = useState(false); // Add state for ReceiveEther visibility
 
   const networks = ['Mainnet', 'Ropsten', 'Kovan', 'Rinkeby'];
 
@@ -47,21 +51,28 @@ const DashboardTwo = () => {
     setIsBuyingETH(true);
   };
 
-  const handleSendETHClick = () => {
-    setIsSendingETH(true);
+  const showTransactionProcess = () => {
+    setIsTransactionProcessVisible(true);
+  };
+
+  const handleSellClick = () => {
+    setIsSellProcessVisible(true);
+  };
+
+  const handleReceiveClick = () => {
+    setIsReceiveEtherVisible(true); // Show ReceiveEther component
   };
 
   return (
     <div>
-      {isBuyingETH ? (
+      {isSellProcessVisible ? (
+        <SellProcess />
+      ) : isTransactionProcessVisible ? (
+        <TransactionProcess />
+      ) : isBuyingETH ? (
         <BuyETH onBuy={() => setIsBuyingETH(false)} />
-      ) : isSendingETH ? ( 
-        <SendTransaction
-          onClose={() => setIsSendingETH(false)}
-          onSend={(transactionDetails) => {
-            console.log('Sending ETH with details:', transactionDetails);
-          }}
-        />
+      ) : isReceiveEtherVisible ? (
+        <ReceiveEther />
       ) : (
         <div className="card">
           <div className="network-dropdown">
@@ -96,19 +107,14 @@ const DashboardTwo = () => {
           </div>
           <div className="card-body">
             <button className="btn btns btn-primary" onClick={handleBuyETHClick}>
-              Buy ETH
+              Buy
             </button>
-            <button className="btn btns btn-primary" onClick={handleSendETHClick}>
-              Send ETH
-            </button>
-            <button className="btn btns btn-primary">Sell</button>
-            <button className="btn btns btn-primary">Receive</button>
+            <button className="btn btns btn-primary" onClick={showTransactionProcess}>Send</button>
+            <button className="btn btns btn-primary" onClick={handleSellClick}>Sell</button>
+            <button className="btn btns btn-primary" onClick={handleReceiveClick}>Receive</button>
           </div>
           <hr />
-          <div className="card-body">
-            <button className="btn assetbtn">Assets</button>
-            <button className="btn activitybtn">Activity</button>
-          </div>
+          <button className="btn activitybtn">Activity</button>
         </div>
       )}
     </div>

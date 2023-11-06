@@ -15,7 +15,7 @@ function KYCVerification() {
           <ETHAmountSelection />
         ) : (
           <>
-            <h3>KYC Verification</h3>
+            <p>Step2: Complete Verification</p>
             <div className="form-group">
               <label>Full Name:</label>
               <input type="text" className="form-control" />

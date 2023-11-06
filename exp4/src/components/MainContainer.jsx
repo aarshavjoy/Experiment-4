@@ -16,7 +16,8 @@ const MainContainer = () => {
   const [showRecoveryPhraseRearrangeComponent, setShowRecoveryPhraseRearrangeComponent] = useState(false);
   const [showDashboard, setShowDashboard] = useState(false);
   const [generatedRecoveryPhrase, setGeneratedRecoveryPhrase] = useState('');
- 
+  const [showSendCard, setShowSendCard] = useState(true); 
+  const [showDashboardTwo, setShowDashboardTwo] = useState(false); 
 
   const handleShowQuestionAnswerCard = () => {
     setShowQuestionAnswerCard(true);
@@ -53,6 +54,11 @@ const MainContainer = () => {
     setShowDashboard(true);
   };
 
+  const handleShowDashboardTwo = () => {
+    setShowSendCard(false);
+    setShowDashboardTwo(true);
+  };
+
   return (
     <div className="container">
       <div className="row">
@@ -79,6 +85,10 @@ const MainContainer = () => {
               onDashboard={handleShowDashboard}
             />
           )}
+           {showSendCard && (
+            <SendCard onStart={handleShowDashboardTwo} /> // Pass the onStart prop
+          )}
+          {showDashboardTwo && <DashboardTwo />}
           {showDashboard && <DashboardComponent />}
         </div>
       </div>

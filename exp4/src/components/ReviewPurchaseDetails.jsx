@@ -19,7 +19,7 @@ function ReviewPurchaseDetails({ ethAmount, selectedCurrency }) {
         <DashboardTwo ethAmount={ethAmount} />
       ) : (
         <div>
-          <h3>Review Purchase Details</h3>
+          <p>step4: Review purchase details</p>
           <div>
             <p>Amount: {ethAmount} ETH</p>
             <p>Gas Fee: {gasFee} ETH</p>

@@ -35,15 +35,6 @@ function BuyETH({ onBuy }) {
               </option>
             ))}
           </select>
-          {/* <div className="form-group">
-            <label>ETH Amount:</label>
-            <input
-              type="text"
-              className="form-control"
-              value={ethAmount}
-              onChange={(e) => setETHAmount(e.target.value)}
-            />
-          </div> */}
           <button className="btn btn-primary" onClick={handleNextClick}>
             Next
           </button>

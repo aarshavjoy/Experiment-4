@@ -168,13 +168,15 @@ margin-left: 35%;
 }
 .selleth{
   font-size:xx-large;
-  margin-left:30%;
+  margin-left:40%;
+  margin-top:5%;
 }
 .sellorder{
-  margin-left:30%;
+  margin-left:40%;
+
 }
 .sellbtns{
-  margin-left:40%;
+  margin-left:85%;
 }
 .finishbtn{
   margin-left:45%;
@@ -183,6 +185,21 @@ margin-left: 35%;
   margin-top:45%;
   margin-left:50%;
   width:120%;
+  
+}
+.accountcheck{
+  margin-top:3%;
+  margin-left:1
+}
+.btnsend{
+margin-top:2%;
+margin-left:80%;
+}
+.acctbtn{
+  margin-left:60%;
+}
+.verify{
+  margin-left:25%;
 }
 .dashboardtwo{
   width:110%;
@@ -190,4 +207,81 @@ margin-left: 35%;
   margin-left:55%;
   border-radius: 10px;
   margin-top:20%;
+}
+.recipientAddress{
+  margin-left:30%;
+}
+.history{
+   margin-left:30%;
+}
+.btnconfirm{
+margin-left:80%;
+}
+.sellbtnss {
+  margin-left:80%;
+}
+.detailss{
+  margin-left:30%;
+}
+.btnsends{
+margin-left:70%;
+margin-bottom:10%;
+}
+.NOO{
+  margin-left:30%;
+  margin-top:10%;
+}
+/* ---------------------------------------------------- */
+.information-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.information-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 5px;
+  text-align:3px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 25%;
+  height:40%;
+  margin-left:5%;
+  
+}
+
+.close-btn {
+  background: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 50%;
+}
+.fa-solid{
+  font-size: xx-large;
+  margin-left:90%;
+  margin-top:-90%;
+  
+}
+.btnsicons{
+margin-left:10%;
+}
+.btneth{
+  margin-left: 90%;
+}
+.btnreview{
+  margin-left: 70%;
+  margin-top:2%;
+  margin-bottom:10%;
+}
+.reviews{
+  margin-left:30%;
 }

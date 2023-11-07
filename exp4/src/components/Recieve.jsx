@@ -5,14 +5,15 @@ function ReceiveEther() {
   const [ethAddress, setEthAddress] = useState('');
   const [ethAmount, setEthAmount] = useState('');
   const [transactionConfirmed, setTransactionConfirmed] = useState(false);
+ 
 
   const defaultAddresses = [
-    '0xAddress1',
-    '0xAddress2',
+    '0x742d35Cc6634C0532925a3..',
+    '0x742d35Cc6634C05329.',
   ];
 
   const handleReceiveEther = () => {
-    
+   
     setTransactionConfirmed(true);
   };
 
@@ -25,15 +26,13 @@ function ReceiveEther() {
   return (
     <div className="container recive">
       {transactionConfirmed ? (
-        <DashboardTwo  ethAmount={ethAmount}/>
+        <DashboardTwo  ethAmount={ethAmount} />
       ) : (
         <div className="card  buycard">
-          <div className="card-header">
-            <h1 className="card-title">Receive Ethereum</h1>
-          </div>
+          
           <div className="card-body">
             <div>
-              <p>Step 1: Choose your Ethereum address</p>
+              <p> Choose your Ethereum address</p>
               <select
                 className="form-control"
                 value={ethAddress}
@@ -46,15 +45,15 @@ function ReceiveEther() {
                   </option>
                 ))}
               </select>
-              <p>Step 2: Share your Ethereum address with the sender</p>
+              <p> Share your Ethereum address with the sender</p>
               <p>Your Ethereum address: {ethAddress}</p>
               <button className="btn btn-primary" onClick={handleCopyAddress}>
                 Copy Address
               </button>
              
-              <p>Step 3: Verify the transaction</p>
+              <p> Verify the transaction</p>
               <button className="btn btn-primary" onClick={handleReceiveEther}>
-                Receive Ethereum
+                home page
               </button>
             </div>
           </div>

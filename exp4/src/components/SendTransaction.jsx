@@ -9,6 +9,10 @@ const TransactionProcess = () => {
   const [gasFees, setGasFees] = useState("");
   const [defaultGasPrice, setDefaultGasPrice] = useState(0);
   const [dash, setDash] = useState(false);
+  const [transactionData, setTransactionData] = useState(null);
+  const [showInformation, setShowInformation] = useState(false);
+
+
 
   useEffect(() => {
     const randomGasPrice = (Math.random() * 100).toFixed(2);
@@ -34,21 +38,42 @@ const TransactionProcess = () => {
   };
 
   const onConfirm = () => {
+    setTransactionData({ type: "Send", amount: amountToSend, recipientAddress: recipientAddress }); 
     setDash(true);
   };
+
+  const toggleInformation = () => {
+    setShowInformation(!showInformation);
+  };
+
+  const closeInformation = () => {
+    setShowInformation(false);
+  };
+  const containerStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+  };
+  const spanStyle = {
+    marginRight: "20px",
+  };
+
 
   return (
     <div className="container mt-5">
       {dash ? (
-        <DashboardTwo ethAmount={amountToSend} />
+        <DashboardTwo ethAmount={amountToSend} transactionData={transactionData} />
       ) : (
         <div className="card buycard">
           <div className="card-body">
-            <h5 className="card-title">Send ethereum </h5>
+          
             {step === 1 && (
               <div>
-                <p>Step 1: Select Your Account</p>
-                <div className="form-check">
+                 <i
+              className="fa-solid   fa-circle-info"
+              onClick={toggleInformation}
+            ></i>
+                <h4> Select Your Account</h4>
+                <div className="form-check accountcheck"> 
                   <input
                     className="form-check-input"
                     type="radio"
@@ -59,7 +84,7 @@ const TransactionProcess = () => {
                   />
                   <label className="form-check-label">Account 1</label>
                 </div>
-                <div className="form-check">
+                <div className="form-check  accountcheck">
                   <input
                     className="form-check-input"
                     type="radio"
@@ -70,29 +95,29 @@ const TransactionProcess = () => {
                   />
                   <label className="form-check-label">Account 2</label>
                 </div>
-                <button className="btn btn-primary" onClick={initiateTransaction}>
+                <button className="btn btnsend btn-primary" onClick={initiateTransaction}>
                   Next
                 </button>
               </div>
             )}
             {step >= 2 && step <= 4 && (
               <div>
-              <p>Step 2: Select Recipient Address</p>
+             
               <div className="form-group">
-                <label>Select Recipient Address</label>
+                <label>Select Recipient Address:</label>
                 <select
                   className="form-control mb-3"
                   value={recipientAddress}
                   onChange={(e) => setRecipientAddress(e.target.value)}
                 >
                   <option value="">Select a recipient address</option>
-                  <option value="Recipient Address 1">0x742d35Cc6634C0532925a3b844Bc454e4438f44e</option>
-                  <option value="Recipient Address 2">0x742d35Cc6634C0532925a3b844Bc454e4438f44f</option>
-                  <option value="Recipient Address 3">0x742d35Cc6634C0532925a3b844Bc454e4438f450</option>
+                  <option value="0x742d35Cc6634C0532925a3..">0x742d35Cc6634C0532925a3b844Bc454e4438f44e</option>
+                  <option value="0x742d35Cc6634C05329..">0x742d35Cc6634C0532925a3b844Bc454e4438f44f</option>
+                  <option value="0x742d35Cc6634C05....">0x742d35Cc6634C0532925a3b844Bc454e4438f450</option>
                  
                 </select>
               </div>
-                <p>Step 3: Specify Amount</p>
+                <p> Specify Amount:</p>
                 <input
                   type="text"
                   className="form-control mb-3"
@@ -100,7 +125,7 @@ const TransactionProcess = () => {
                   value={amountToSend}
                   onChange={(e) => setAmountToSend(e.target.value)}
                 />
-                <p>Step 4: Estimate Gas Fees</p>
+                <p> Estimate Gas Fees:</p>
                 <input
                   type="text"
                   className="form-control mb-3"
@@ -108,22 +133,48 @@ const TransactionProcess = () => {
                   value={defaultGasPrice}
                   onChange={(e) => setGasFees(e.target.value)}
                 />
-                <button className="btn btn-primary" onClick={nextStep}>
+                <button className="btn btnsend btn-primary" onClick={nextStep}>
                   Next
                 </button>
               </div>
             )}
             {step === 5 && (
               <div>
-                <p>Step 5: Review Transaction Details</p>
-                <p>Amount to Send: {amountToSend} ETH</p>
-                <p>Gas Price(estimated): {defaultGasPrice} ETH</p>
-                <p>Total: <b>{parseFloat(amountToSend) + parseFloat(defaultGasPrice)} ETH</b></p>
-                <button className="btn btn-primary" onClick={onConfirm}>
+                <p style={containerStyle}> Review Transaction Details</p>
+                <p style={containerStyle}>Amount to Send:<b> <span style={spanStyle}> {amountToSend} ETH</span></b></p>
+                <p style={containerStyle}>Gas Price(estimated): <b><span style={spanStyle}> {defaultGasPrice} ETH</span></b></p>
+                <p style={containerStyle}>Total: <span style={spanStyle}> <b>{parseFloat(amountToSend) + parseFloat(defaultGasPrice)} ETH</b></span></p>
+                <button className="btn  btnconfirm btn-primary" onClick={onConfirm}>
                   Confirm
                 </button>
               </div>
             )}
+             {showInformation && (
+        <div className="information-container">
+          <div className="information-content">
+            <p>How to sell ETH in MetaMask?</p>
+            <p>
+             
+            Select your account from which you wish to send ETH..
+            </p>
+            <p>
+            Input the recipient's public address.
+            </p>
+            <p>
+              
+            Enter the amount of ETH to send and you will be presented with the estimated gas fees of your transaction
+            </p>
+            <p>
+            Review and  Confirm the transaction.
+            </p>
+            <p>You will then be redirected to the homepage, where you can see a list of your recent transactions below transaction history</p>
+
+            <button className="btn close-btn" onClick={closeInformation}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
           </div>
         </div>
       )}

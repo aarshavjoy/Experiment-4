@@ -18,6 +18,7 @@ const MainContainer = () => {
   const [generatedRecoveryPhrase, setGeneratedRecoveryPhrase] = useState('');
   const [showSendCard, setShowSendCard] = useState(false);
   const [showDashboardTwo, setShowDashboardTwo] = useState(false);
+  
 
   const handleShowQuestionAnswerCard = () => {
     setShowQuestionAnswerCard(true);

@@ -7,6 +7,8 @@ function SellProcess() {
   const [ethAmount, setEthAmount] = useState("");
   const [quote, setQuote] = useState("Wyre");
   const [dashboard, setDashboard] = useState(false);
+  const [transactionDataSell, setTransactionDataSell] = useState(null);
+  const [showInformation, setShowInformation] = useState(false);
   const [kycInfo, setKYCInfo] = useState({
     fullName: "",
     dateOfBirth: "",
@@ -27,9 +29,9 @@ function SellProcess() {
 
   const calculateExchangeRate = (quote) => {
     if (quote === "Wyre") {
-      return 0.02;
+      return 144887.38;
     } else if (quote === "moonpay") {
-      return 0.025;
+      return 262797.68;
     }
   };
 
@@ -38,9 +40,20 @@ function SellProcess() {
   };
 
   const onFinish = () => {
+    setTransactionDataSell({
+      type: "Sold",
+      amount: ethAmount,
+      recipientAddress: bankInfo.bankName,
+    });
     setDashboard(true);
   };
+  const toggleInformation = () => {
+    setShowInformation(!showInformation);
+  };
 
+  const closeInformation = () => {
+    setShowInformation(false);
+  };
   const containerStyle = {
     display: "flex",
     justifyContent: "space-between",
@@ -52,13 +65,17 @@ function SellProcess() {
   return (
     <div>
       {dashboard ? (
-        <DashboardTwo ethAmount={ethAmount} />
+        <DashboardTwo ethAmount={ethAmount} transactionData={transactionDataSell} />
       ) : (
         <div className="card sellcards">
           <div className="card-body">
             {step === 1 && (
               <div>
-                <p>Step 1: Select your region</p>
+                 <i
+              className="fa-solid   fa-circle-info"
+              onClick={toggleInformation}
+            ></i>
+                <p> Select your region</p>
                 <select
                   className="form-control fsell"
                   value={region}
@@ -81,7 +98,7 @@ function SellProcess() {
             )}
             {step === 2 && (
               <div>
-                <p>Step 2: Input the amount of ETH you want to sell</p>
+                <p> Input the amount of ETH you want to sell</p>
                 <input
                   type="number"
                   className="form-control"
@@ -95,11 +112,11 @@ function SellProcess() {
                   value={quote}
                   onChange={(e) => setQuote(e.target.value)}
                 >
-                  <option value="Wyre">Wyre (1 ETH = 0.02 BTC)</option>
-                  <option value="moonpay">Moonpay (1 ETH = 0.025 BTC)</option>
+                  <option value="Wyre">Wyre (1 ETH = $1,887.38)</option>
+                  <option value="moonpay">Moonpay (1 ETH = $2,797.68)</option>
                 </select>
                 <button
-                  className="btn  sellbtn btn-primary"
+                  className="btn  sellbtns btn-primary"
                   onClick={handleNextStep}
                 >
                   Next
@@ -108,7 +125,7 @@ function SellProcess() {
             )}
             {step === 3 && (
               <div>
-                <p>Step 3: Complete Verification </p>
+             
                 <p>Personal Information:</p>
                 <input
                   type="text"
@@ -130,7 +147,7 @@ function SellProcess() {
                 />
 
                 <button
-                  className="btn sellbtn btn-primary"
+                  className="btn sellbtns btn-primary"
                   onClick={handleNextStep}
                 >
                   Next
@@ -139,7 +156,7 @@ function SellProcess() {
             )}
             {step === 4 && (
               <div>
-                <p>Step 4: Connect your bank account</p>
+                <p> Connect your bank account</p>
                 <div className="form-group">
                   <label htmlFor="bankName">Bank account:</label>
                   <select
@@ -151,20 +168,20 @@ function SellProcess() {
                     }
                   >
                     <option value="">Select Bank account</option>
-                    <option value="Account-1">Account-1</option>
-                    <option value="Account-2">Account-2</option>
-                    <option value="Account-3">Account-3</option>
+                    <option value="0x742d35Cc6634C0532925a3..">Account-1</option>
+                    <option value="0x742d35Cc6634C05....">Account-2</option>
+                    <option value="0x742d35Cc6634C05329.">Account-3</option>
                   </select>
                 </div>
 
-                <button className="btn btn-primary" onClick={handleNextStep}>
+                <button className="btn acctbtn btn-primary" onClick={handleNextStep}>
                   Connect Bank Account
                 </button>
               </div>
             )}
             {step === 5 && (
               <div>
-                <p>Step 5: verify Amount and Order</p>
+                <h5 className="verify"> Verify Amount and Order</h5>
                 <b>
                   <p className="selleth"> {ethAmount}ETH</p>
                 </b>
@@ -172,7 +189,7 @@ function SellProcess() {
                   Order ID: <b>{Math.floor(Math.random() * 100000)}</b>
                 </p>
                 <button
-                  className="btn sellbtn  btn-primary"
+                  className="btn sellbtnss  btn-primary"
                   onClick={handleNextStep}
                 >
                   Send ETH
@@ -181,38 +198,38 @@ function SellProcess() {
             )}
             {step === 6 && (
               <div className="selldetails">
-                <p>Step 7: Transaction Details</p>
+                <h4 className="detailss">Transaction Details</h4>
                 <p style={containerStyle}>
                   Order ID:{" "}
                   <span style={spanStyle}>
-                    {Math.floor(Math.random() * 100000)}
+                    <b>{Math.floor(Math.random() * 100000)}</b>
                   </span>
                 </p>
                 <p style={containerStyle}>
                   Destination Account:
-                  <span style={spanStyle}>{bankInfo.bankName}</span>{" "}
+                  <span style={spanStyle}><b>{bankInfo.bankName}</b></span>
                 </p>
                 <p style={containerStyle}>
-                  Preferred Provider:<span style={spanStyle}>{quote}</span>{" "}
+                  Preferred Provider:<span style={spanStyle}><b>{quote}</b></span>
                 </p>
                 <p style={containerStyle}>
                   Exchange Rate (Quote):
                   <span style={spanStyle}>
-                    1 ETH = {calculateExchangeRate(quote)} BTC
+                   <b> 1 ETH = ${calculateExchangeRate(quote)}</b>
                   </span>
                 </p>
                 <p style={containerStyle}>
-                  Total ETH: <span style={spanStyle}>{ethAmount} ETH</span>
+                  Total ETH: <span style={spanStyle}><b>{ethAmount} ETH</b></span>
                 </p>
                 <p style={containerStyle}>
                   Amount received total(USD):
-                  <span style={spanStyle}>
-                    {" "}
+                  <span style={spanStyle}><b>
+                    
                     {calculateTotalMoney(
                       ethAmount,
                       calculateExchangeRate(quote)
-                    )}{" "}
-                    USD
+                    )}
+                    USD</b>
                   </span>
                 </p>
                 <br />
@@ -227,6 +244,31 @@ function SellProcess() {
                 </button>
               </div>
             )}
+            {showInformation && (
+        <div className="information-container">
+          <div className="information-content">
+            <p>How to sell ETH in MetaMask?</p>
+            <p>
+             
+            Select your bank's country from the dropdown menu.
+            </p>
+            <p>
+            Enter the amount of ETH you want to sell and choose your preferred offer.
+            </p>
+            <p>
+              
+             complete the verification  process  and connect your bank account.
+            </p>
+            <p>
+            Click "Send ETH."
+            </p>
+               <p>transaction details along with confirmation is produced</p>
+            <button className="btn close-btn" onClick={closeInformation}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
           </div>
         </div>
       )}

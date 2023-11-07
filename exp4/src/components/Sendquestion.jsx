@@ -21,7 +21,7 @@ const SendCard = ({ onShowDashboardTwo }) => {
       <div className="card-body">
         <p className="card-text">{questionAndAnswer[0].question}</p>
         <p className="card-text">{questionAndAnswer[0].answer}</p>
-        <button className="btn btnsend btn-primary" onClick={onShowDashboardTwo} >
+        <button className="btn btnsends btn-primary" onClick={onShowDashboardTwo} >
           Try Yourself
         </button>
       </div>

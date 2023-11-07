@@ -5,6 +5,7 @@ function ETHAmountSelection({ onAmountSelection }) {
   const [ethAmount, setETHAmount] = useState('');
   const [selectedCurrency, setSelectedCurrency] = useState('USD');
   const [showReview, setShowReview] = useState(false);
+  const [recipientAddress,setRecipientAddress]= useState('');
 
   const handleETHAmountChange = (amount) => {
     setETHAmount(amount);
@@ -15,9 +16,8 @@ function ETHAmountSelection({ onAmountSelection }) {
   };
 
   const calculateEquivalentAmount = () => {
-    // Calculate the equivalent amount based on exchange rates (you should fetch rates from an API)
-    // For this example, we'll assume a simple conversion rate for demonstration purposes.
-    let conversionRate = 1.23; // Replace with the actual exchange rate
+   
+    let conversionRate = 1.23;
     return ethAmount * conversionRate;
   };
 
@@ -31,17 +31,31 @@ function ETHAmountSelection({ onAmountSelection }) {
     }
   }
 
-  const currencies = ['USD', 'EUR', 'GBP', 'JPY']; // Add more as needed
+  const currencies = ['USD', 'EUR', 'GBP', 'JPY']; 
 
   return (
     <div>
       {showReview ? (
-        <ReviewPurchaseDetails ethAmount={ethAmount} />
+        <ReviewPurchaseDetails ethAmount={ethAmount} recipientAddress={recipientAddress}  />
       ) : (
         <div className="card buycard">
           <div className="card-body">
-            <h5 className="card-title">ETH Amount Selection</h5>
-            <p>Step 3: Select ETH Amount</p>
+        
+            
+            <div className="form-group">
+                <label>Select Recipient Address:</label>
+                <select
+                  className="form-control mb-3"
+                  value={recipientAddress}
+                  onChange={(e) => setRecipientAddress(e.target.value)}
+                >
+                  <option value="">Select a recipient address</option>
+                  <option value="0x742d35Cc6634C0532925a3..">0x742d35Cc6634C0532925a3b844Bc454e4438f44e</option>
+                  <option value="0x742d35Cc6634C05329..">0x742d35Cc6634C0532925a3b844Bc454e4438f44f</option>
+                  <option value="0x742d35Cc6634C05....">0x742d35Cc6634C0532925a3b844Bc454e4438f450</option>
+                 
+                </select>
+              </div>
             <div className="form-group">
               <label>Enter ETH Amount:</label>
               <input
@@ -75,7 +89,8 @@ function ETHAmountSelection({ onAmountSelection }) {
                 readOnly
               />
             </div>
-            <button className="btn btn-primary" onClick={handleNextClick}>
+
+            <button className="btn btneth btn-primary" onClick={handleNextClick}>
               Next
             </button>
           </div>

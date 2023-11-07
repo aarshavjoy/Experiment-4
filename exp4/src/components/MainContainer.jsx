@@ -16,8 +16,8 @@ const MainContainer = () => {
   const [showRecoveryPhraseRearrangeComponent, setShowRecoveryPhraseRearrangeComponent] = useState(false);
   const [showDashboard, setShowDashboard] = useState(false);
   const [generatedRecoveryPhrase, setGeneratedRecoveryPhrase] = useState('');
-  const [showSendCard, setShowSendCard] = useState(true); 
-  const [showDashboardTwo, setShowDashboardTwo] = useState(false); 
+  const [showSendCard, setShowSendCard] = useState(false);
+  const [showDashboardTwo, setShowDashboardTwo] = useState(false);
 
   const handleShowQuestionAnswerCard = () => {
     setShowQuestionAnswerCard(true);
@@ -54,6 +54,10 @@ const MainContainer = () => {
     setShowDashboard(true);
   };
 
+  const handleShowSendCard = () => {
+    setShowDashboard(false); 
+    setShowSendCard(true); 
+  };
   const handleShowDashboardTwo = () => {
     setShowSendCard(false);
     setShowDashboardTwo(true);
@@ -85,11 +89,16 @@ const MainContainer = () => {
               onDashboard={handleShowDashboard}
             />
           )}
-           {showSendCard && (
-            <SendCard onStart={handleShowDashboardTwo} /> // Pass the onStart prop
-          )}
-          {showDashboardTwo && <DashboardTwo />}
-          {showDashboard && <DashboardComponent />}
+           {showDashboard ? (
+            <DashboardComponent onShowSendCard={handleShowSendCard} />
+          ) : showSendCard ? (
+            <SendCard onShowDashboardTwo={handleShowDashboardTwo}  />
+          ) : null}
+           {showDashboardTwo ? (
+            <DashboardTwo />
+          ) : null}
+          
+          
         </div>
       </div>
     </div>

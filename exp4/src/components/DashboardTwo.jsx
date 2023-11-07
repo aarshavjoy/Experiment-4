@@ -60,7 +60,7 @@ const DashboardTwo = () => {
   };
 
   const handleReceiveClick = () => {
-    setIsReceiveEtherVisible(true); // Show ReceiveEther component
+    setIsReceiveEtherVisible(true); 
   };
 
   return (
@@ -74,7 +74,7 @@ const DashboardTwo = () => {
       ) : isReceiveEtherVisible ? (
         <ReceiveEther />
       ) : (
-        <div className="card">
+        <div className="card dashboardtwo">
           <div className="network-dropdown">
             <label htmlFor="networkSelect"></label>
             <select

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SendCard = ({ onStart }) => {
+const SendCard = ({ onShowDashboardTwo }) => {
   const questionAndAnswer = [
     {
       question: 'How do transactions happen in MetaMask?',
@@ -21,8 +21,8 @@ const SendCard = ({ onStart }) => {
       <div className="card-body">
         <p className="card-text">{questionAndAnswer[0].question}</p>
         <p className="card-text">{questionAndAnswer[0].answer}</p>
-        <button className="btn btnsend btn-primary" onClick={onStart}>
-          Start
+        <button className="btn btnsend btn-primary" onClick={onShowDashboardTwo} >
+          Try Yourself
         </button>
       </div>
     </div>

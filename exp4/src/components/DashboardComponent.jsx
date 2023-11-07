@@ -3,13 +3,13 @@ import Accordion from './AccountDetailsComponent';
 import SendCard from './Sendquestion';
 
 
-const DashboardComponent = ({ account}) => {
+const DashboardComponent = ({ account, onShowSendCard }) => {
   const [selectedNetwork, setSelectedNetwork] = useState('Mainnet');
   const [etherAmount, setEtherAmount] = useState(10); 
   const [publicKey, setPublicKey] = useState(generateRandomKey(40));
   const [privateKey, setPrivateKey] = useState(generateRandomKey(64));
   const [isAccordionCardVisible, setIsAccordionCardVisible] = useState(false);
-  const[showsend,setShowSend]=useState(false);
+
 
 
   const networks = ['Mainnet', 'Ropsten', 'Kovan', 'Rinkeby'];
@@ -45,21 +45,16 @@ const DashboardComponent = ({ account}) => {
   const closeAccordionCard = () => {
     setIsAccordionCardVisible(false);
   };
-  const openSendCard = () => {
-    
-    setShowSend(true);
-  };
+
 
 
   return (<>
 
 
   
-        {showsend ? (
-          <SendCard />
-        ) : ( 
+       
           <div>
-        <button className="btn resumebtn btn-primary" onClick={openSendCard} >
+        <button className="btn resumebtn btn-primary" onClick={onShowSendCard} >
         Resume Learning
       </button>
   <div className="card dashcard"> 
@@ -103,15 +98,15 @@ const DashboardComponent = ({ account}) => {
         <button className="btn btns btn-primary">Receive</button>
       </div>
       <hr />
-      <div className="card-body">
+      {/* <div className="card-body"> */}
         {/* <button className="btn  assetbtn ">Assets</button> */}
         <button className="btn activitybtn ">Activity</button>
       
-        </div>
+        {/* </div> */}
      
         </div>
     </div>
-       )}
+      
     </>
   );
 };

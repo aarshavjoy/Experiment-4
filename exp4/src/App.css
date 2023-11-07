@@ -147,12 +147,47 @@ margin-left: 35%;
   width:80%;
 }
 .fsell{
-  width:30%;
+  width:70%;
 }
 .selldetails{
   width:90%;
-  margin-bottom:25%;
+  margin-bottom:5%;
 }
-/* .recive{
+.sellcards{
+  margin-top:60%;
+  margin-left:50%;
   width:120%;
-} */
+ 
+}
+.sellbtn{
+  margin-top:6%;
+  margin-left:30%;
+}
+.form-control{
+  margin-bottom: 5%;
+}
+.selleth{
+  font-size:xx-large;
+  margin-left:30%;
+}
+.sellorder{
+  margin-left:30%;
+}
+.sellbtns{
+  margin-left:40%;
+}
+.finishbtn{
+  margin-left:45%;
+}
+.buycard{
+  margin-top:45%;
+  margin-left:50%;
+  width:120%;
+}
+.dashboardtwo{
+  width:110%;
+  height:60%;
+  margin-left:55%;
+  border-radius: 10px;
+  margin-top:20%;
+}

@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import DashboardTwo from './DashboardTwo';
+import React, { useState } from "react";
+import DashboardTwo from "./DashboardTwo";
 
 function SellProcess() {
   const [step, setStep] = useState(1);
-  const [region, setRegion] = useState('');
-  const [ethAmount, setEthAmount] = useState('');
-  const [quote, setQuote] = useState('Wyre');
+  const [region, setRegion] = useState("");
+  const [ethAmount, setEthAmount] = useState("");
+  const [quote, setQuote] = useState("Wyre");
   const [dashboard, setDashboard] = useState(false);
   const [kycInfo, setKYCInfo] = useState({
-    fullName: '',
-    dateOfBirth: '',
-    address: '',
+    fullName: "",
+    dateOfBirth: "",
+    address: "",
   });
   const [bankInfo, setBankInfo] = useState({
-    bankName: '',
-    accountNumber: '',
-    routingNumber: '',
+    bankName: "",
+    accountNumber: "",
+    routingNumber: "",
   });
   const [isTransactionComplete, setIsTransactionComplete] = useState(false);
 
@@ -26,9 +26,9 @@ function SellProcess() {
   };
 
   const calculateExchangeRate = (quote) => {
-    if (quote === 'Wyre') {
+    if (quote === "Wyre") {
       return 0.02;
-    } else if (quote === 'moonpay') {
+    } else if (quote === "moonpay") {
       return 0.025;
     }
   };
@@ -41,25 +41,40 @@ function SellProcess() {
     setDashboard(true);
   };
 
+  const containerStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+  };
+  const spanStyle = {
+    marginRight: "20px",
+  };
+
   return (
-    <div className="container">
+    <div>
       {dashboard ? (
         <DashboardTwo ethAmount={ethAmount} />
       ) : (
-        <div>
-         
+        <div className="card sellcards">
           <div className="card-body">
             {step === 1 && (
               <div>
                 <p>Step 1: Select your region</p>
-                <input
-                  type="text"
+                <select
                   className="form-control fsell"
-                  placeholder="Region"
                   value={region}
                   onChange={(e) => setRegion(e.target.value)}
-                />
-                <button className="btn btn-primary" onClick={handleNextStep}>
+                >
+                  <option value="">Select Region</option>
+                  <option value="USA">United States</option>
+                  <option value="Canada">Canada</option>
+                  <option value="UK">United Kingdom</option>
+                  <option value="Australia">Australia</option>
+                  {/* Add more country options here */}
+                </select>
+                <button
+                  className="btn sellbtns btn-primary"
+                  onClick={handleNextStep}
+                >
                   Next
                 </button>
               </div>
@@ -83,14 +98,17 @@ function SellProcess() {
                   <option value="Wyre">Wyre (1 ETH = 0.02 BTC)</option>
                   <option value="moonpay">Moonpay (1 ETH = 0.025 BTC)</option>
                 </select>
-                <button className="btn btn-primary" onClick={handleNextStep}>
+                <button
+                  className="btn  sellbtn btn-primary"
+                  onClick={handleNextStep}
+                >
                   Next
                 </button>
               </div>
             )}
             {step === 3 && (
               <div>
-                <p>Step 3: Complete KYC</p>
+                <p>Step 3: Complete Verification </p>
                 <p>Personal Information:</p>
                 <input
                   type="text"
@@ -110,15 +128,11 @@ function SellProcess() {
                     setKYCInfo({ ...kycInfo, dateOfBirth: e.target.value })
                   }
                 />
-                <textarea
-                  className="form-control"
-                  placeholder="Address"
-                  value={kycInfo.address}
-                  onChange={(e) =>
-                    setKYCInfo({ ...kycInfo, address: e.target.value })
-                  }
-                />
-                <button className="btn btn-primary" onClick={handleNextStep}>
+
+                <button
+                  className="btn sellbtn btn-primary"
+                  onClick={handleNextStep}
+                >
                   Next
                 </button>
               </div>
@@ -126,24 +140,23 @@ function SellProcess() {
             {step === 4 && (
               <div>
                 <p>Step 4: Connect your bank account</p>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Bank Name"
-                  value={bankInfo.bankName}
-                  onChange={(e) =>
-                    setBankInfo({ ...bankInfo, bankName: e.target.value })
-                  }
-                />
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Account Number"
-                  value={bankInfo.accountNumber}
-                  onChange={(e) =>
-                    setBankInfo({ ...bankInfo, accountNumber: e.target.value })
-                  }
-                />
+                <div className="form-group">
+                  <label htmlFor="bankName">Bank account:</label>
+                  <select
+                    className="form-control"
+                    id="bankName"
+                    value={bankInfo.bankName}
+                    onChange={(e) =>
+                      setBankInfo({ ...bankInfo, bankName: e.target.value })
+                    }
+                  >
+                    <option value="">Select Bank account</option>
+                    <option value="Account-1">Account-1</option>
+                    <option value="Account-2">Account-2</option>
+                    <option value="Account-3">Account-3</option>
+                  </select>
+                </div>
+
                 <button className="btn btn-primary" onClick={handleNextStep}>
                   Connect Bank Account
                 </button>
@@ -151,10 +164,17 @@ function SellProcess() {
             )}
             {step === 5 && (
               <div>
-                 <p>Step 5: verify Amount and Order</p>
-                <p>ETH Amount: {ethAmount}</p>
-                <p>Order ID: {Math.floor(Math.random() * 100000)}</p>
-                <button className="btn btn-primary" onClick={handleNextStep}>
+                <p>Step 5: verify Amount and Order</p>
+                <b>
+                  <p className="selleth"> {ethAmount}ETH</p>
+                </b>
+                <p className="sellorder">
+                  Order ID: <b>{Math.floor(Math.random() * 100000)}</b>
+                </p>
+                <button
+                  className="btn sellbtn  btn-primary"
+                  onClick={handleNextStep}
+                >
                   Send ETH
                 </button>
               </div>
@@ -162,14 +182,47 @@ function SellProcess() {
             {step === 6 && (
               <div className="selldetails">
                 <p>Step 7: Transaction Details</p>
-                <p>Order ID: {Math.floor(Math.random() * 100000)}</p>
-                <p>Destination Account: {bankInfo.accountNumber}</p>
-                <p>Preferred Provider: {quote}</p>
-                <p>Exchange Rate (Quote): 1 ETH = {calculateExchangeRate(quote)} BTC</p>
-                <p>Total ETH: {ethAmount} ETH</p>
-                <p>Total Money (USD): {calculateTotalMoney(ethAmount, calculateExchangeRate(quote))} USD</p>
-                <p>Order Confirmed! Please note that it may take a few days to see the funds in your bank account.</p>
-                <button className="btn btn-primary" onClick={onFinish}>
+                <p style={containerStyle}>
+                  Order ID:{" "}
+                  <span style={spanStyle}>
+                    {Math.floor(Math.random() * 100000)}
+                  </span>
+                </p>
+                <p style={containerStyle}>
+                  Destination Account:
+                  <span style={spanStyle}>{bankInfo.bankName}</span>{" "}
+                </p>
+                <p style={containerStyle}>
+                  Preferred Provider:<span style={spanStyle}>{quote}</span>{" "}
+                </p>
+                <p style={containerStyle}>
+                  Exchange Rate (Quote):
+                  <span style={spanStyle}>
+                    1 ETH = {calculateExchangeRate(quote)} BTC
+                  </span>
+                </p>
+                <p style={containerStyle}>
+                  Total ETH: <span style={spanStyle}>{ethAmount} ETH</span>
+                </p>
+                <p style={containerStyle}>
+                  Amount received total(USD):
+                  <span style={spanStyle}>
+                    {" "}
+                    {calculateTotalMoney(
+                      ethAmount,
+                      calculateExchangeRate(quote)
+                    )}{" "}
+                    USD
+                  </span>
+                </p>
+                <br />
+                <b>
+                  <p>
+                    Order Confirmed! Please note that it may take a few days to
+                    see the funds in your bank account.
+                  </p>
+                </b>
+                <button className="btn finishbtn btn-primary" onClick={onFinish}>
                   Finish
                 </button>
               </div>

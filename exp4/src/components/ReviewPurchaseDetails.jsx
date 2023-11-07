@@ -14,24 +14,26 @@ function ReviewPurchaseDetails({ ethAmount, selectedCurrency }) {
   }
 
   return (
-    <div className="review-purchase-details">
+    <div>
       {showBalance ? (
         <DashboardTwo ethAmount={ethAmount} />
       ) : (
-        <div>
-          <p>step4: Review purchase details</p>
-          <div>
-            <p>Amount: {ethAmount} ETH</p>
-            <p>Gas Fee: {gasFee} ETH</p>
-            <p>Price per ETH: {price} {selectedCurrency} per ETH</p>
-            <p>Total Amount Needed: {totalAmountNeeded} {selectedCurrency}</p>
-            
+        <div className="card buycard">
+          <div className="card-body">
+            <h5 className="card-title">Review Purchase Details</h5>
+            <p>Step 4: Review Purchase Details</p>
+            <div>
+              <p>Amount: {ethAmount} ETH</p>
+              <p>Gas Fee: {gasFee} ETH</p>
+              <p>Price per ETH: {price} {selectedCurrency} per ETH</p>
+              <p>Total Amount Needed: {totalAmountNeeded} {selectedCurrency}</p>
+            </div>
+            <button className="btn btn-primary" onClick={handleShowBalance}>Confirm Purchase</button>
           </div>
-          <button className="btn btn-primary" onClick={handleShowBalance}>Confirm Purchase</button>
         </div>
       )}
     </div>
   );
 }
 
-export default ReviewPurchaseDetails
+export default ReviewPurchaseDetails;

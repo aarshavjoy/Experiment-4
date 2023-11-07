@@ -27,7 +27,7 @@ function ReceiveEther() {
       {transactionConfirmed ? (
         <DashboardTwo  ethAmount={ethAmount}/>
       ) : (
-        <div className="card recive">
+        <div className="card  buycard">
           <div className="card-header">
             <h1 className="card-title">Receive Ethereum</h1>
           </div>

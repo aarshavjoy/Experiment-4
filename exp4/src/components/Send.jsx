@@ -16,7 +16,7 @@ const SendTransaction = ({ onClose, onSend }) => {
       gasFee: gasPrice,
       totalCost: amount + gasPrice,
     });
-    onClose();  // You can choose to close the SendTransaction component or keep it open
+    onClose(); 
   };
 
   return (

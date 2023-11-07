@@ -9,13 +9,14 @@ function KYCVerification() {
   }
 
   return (
-    <>
-      <div className="kyc-verification">
-        {showETHAmount ? (
-          <ETHAmountSelection />
-        ) : (
-          <>
-            <p>Step2: Complete Verification</p>
+    <div>
+      {showETHAmount ? (
+        <ETHAmountSelection />
+      ) : (
+        <div className="card buycard">
+          <div className="card-body">
+            <h5 className="card-title">KYC Verification</h5>
+            <p>Step 2: Complete Verification</p>
             <div className="form-group">
               <label>Full Name:</label>
               <input type="text" className="form-control" />
@@ -25,10 +26,10 @@ function KYCVerification() {
               <input type="text" className="form-control" />
             </div>
             <button className="btn btn-primary" onClick={handleNextClick}>Verify</button>
-          </>
-        )}
-      </div>
-    </>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 

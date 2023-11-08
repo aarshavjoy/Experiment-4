@@ -15,7 +15,7 @@ const TransactionProcess = () => {
 
 
   useEffect(() => {
-    const randomGasPrice = (Math.random() * 100).toFixed(2);
+    const randomGasPrice = (Math.random() * 10).toFixed(2);
     setDefaultGasPrice(randomGasPrice);
   }, []);
 

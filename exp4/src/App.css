@@ -13,8 +13,8 @@ html, body {
   margin-left:25%;
 }
 .custom-accordion {
-  border-radius: 15%; /* Adjust the border radius as needed */
-  margin-bottom: 16px; /* Adjust the margin between accordions */
+  border-radius: 15%;
+  margin-bottom: 16px; 
   width:40%;
   margin-left: 30%;
 }
@@ -31,7 +31,7 @@ html, body {
   border-radius: 10;
 }
 .btndetail{
-  background-color:antiquewhite;
+  background-color:rgb(160, 152, 145);
 }
 .recovery{
   width: 80%;
@@ -119,9 +119,9 @@ margin-left: 35%;
   border-color: #022027;
 }
 .form-select{
-  background-color:antiquewhite;
+  background-color:rgb(253, 247, 242);
   border-radius: 5px;
-  width:25%;
+  width:35%;
   margin-top:5%;
 }
 .resumebtn{

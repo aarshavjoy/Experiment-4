@@ -7,10 +7,10 @@ const SendCard = ({ onShowDashboardTwo }) => {
       answer: (
         <div>
           Metamask facilitates transactions in various ways:<br /><br/>
-          Send: Users can send cryptocurrencies from their MetaMask wallet to another wallet address.<br /><br/>
-          Receive: MetaMask provides wallet addresses to receive cryptocurrency from others.<br /><br/>
-          Buy: Users can buy cryptocurrencies within MetaMask through supported decentralized exchanges or services..<br /><br/>
-          Sell: Users can sell cryptocurrencies from their wallet using compatible decentralized exchanges or services.<br /><br/>
+          Send: A send transaction involves transferring cryptocurrency from your MetaMask wallet to another wallet address.<br /><br/>
+          Receive: A receive transaction involves receiving cryptocurrency from another wallet or entity.<br /><br/>
+          Buy: A buy transaction involves acquiring cryptocurrency by exchanging fiat currency or another asset.<br /><br/>
+          Sell: A sell transaction involves exchanging cryptocurrency for another asset, such as fiat currency or another cryptocurrency.<br /><br/>
         </div>
       ),
     },

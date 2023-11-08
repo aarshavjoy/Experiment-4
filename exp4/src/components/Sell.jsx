@@ -192,7 +192,7 @@ function SellProcess() {
                   className="btn sellbtnss  btn-primary"
                   onClick={handleNextStep}
                 >
-                  Send ETH
+                  Sell ETH
                 </button>
               </div>
             )}
@@ -260,7 +260,7 @@ function SellProcess() {
              complete the verification  process  and connect your bank account.
             </p>
             <p>
-            Click "Send ETH."
+            Click "Sell ETH."
             </p>
                <p>transaction details along with confirmation is produced</p>
             <button className="btn close-btn" onClick={closeInformation}>

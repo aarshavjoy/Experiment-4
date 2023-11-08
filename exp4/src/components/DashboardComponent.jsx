@@ -10,7 +10,7 @@ const DashboardComponent = ({ account, onShowSendCard }) => {
   const [isAccordionCardVisible, setIsAccordionCardVisible] = useState(false);
 
 
-  const networks = ["Mainnet", "Ropsten", "Kovan", "Rinkeby"];
+  const networks = ["Mainnet", "Ropsten testNetwork", "Kovan testNetwork", "Rinkeby testNetwork"];
 
   useEffect(() => {
     const updateEtherAmount = setInterval(() => {
@@ -62,7 +62,7 @@ const DashboardComponent = ({ account, onShowSendCard }) => {
               onChange={handleNetworkChange}
             >
               {networks.map((network) => (
-                <option key={network} value={network}>
+                <option key={network} value={network} disabled={network !== "Ropsten testNetwork"}>
                   {network}
                 </option>
               ))}

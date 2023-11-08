@@ -20,10 +20,10 @@ const DashboardTwo = ({ transactionData }) => {
     {
       type: "Send",
       amount: 2.5,
-      recipientAddress: "0x12345...",
+      recipientAddress: "0x1234515248...",
     },
     {
-      type: "Sell",
+      type: "Sold",
       amount: 3.0,
       recipientAddress: "0x742d35Cc6634C05....",
     },
@@ -175,21 +175,17 @@ const DashboardTwo = ({ transactionData }) => {
             <p>Metamask facilitates transactions in various ways:</p>
             <p>
              
-              Send: Users can send cryptocurrencies from their MetaMask wallet
-              to another wallet address.
+              Send:A send transaction involves transferring cryptocurrency from your MetaMask wallet to another wallet address.
             </p>
             <p>
-              Receive: MetaMask provides wallet addresses to receive
-              cryptocurrency from others.
+              Receive: MetaMask provides wallet addresses to receive cryptocurrency from others.
             </p>
             <p>
               
-              Buy: Users can buy cryptocurrencies within MetaMask through
-              supported decentralized exchanges or services..
+              Buy: A buy transaction involves acquiring cryptocurrency by exchanging fiat currency or another asset.
             </p>
             <p>
-              Sell: Users can sell cryptocurrencies from their wallet using
-              compatible decentralized exchanges or services.
+              Sell: A sell transaction involves exchanging cryptocurrency for another asset, such as fiat currency or another cryptocurrency.
             </p>
 
             <button className="btn close-btn" onClick={closeInformation}>
